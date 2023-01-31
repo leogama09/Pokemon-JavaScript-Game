@@ -6,3 +6,11 @@ canvas.height = 576
 
 c.fillStyle = 'white'
 c.fillRect(0, 0, canvas.width, canvas.height)
+
+const image = new Image('./img/Pellet Town.png')
+image.src = './img/Pellet Town.png'
+console.log(image)
+
+image.onload = () => {
+    c.drawImage(image, -750, -550)
+}

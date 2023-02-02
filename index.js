@@ -340,7 +340,8 @@ draggleImage.src = './img/draggleSprite.png'
             max: 4,
             hold: 15
         },
-        animate: true
+        animate: true,
+        isEnemy: true
     })
 
 const embyImage = new Image()
@@ -367,6 +368,18 @@ embyImage.src = './img/embySprite.png'
 
     // animate()
     animateBattle()
+
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('click', () => {
+            emby.attack({attack: {
+                name: 'Tackle',
+                damage: 10,
+                type: 'Normal'
+            },
+            recipient: draggle
+        })
+        })
+    })
 
 let lastKey = ''
 window.addEventListener('keydown', (e) => {

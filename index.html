@@ -37,6 +37,7 @@
             left: 0;
             opacity: 0;
             pointer-events: none;
+            z-index: 10;
         "
     ></div>
 
@@ -46,6 +47,9 @@
     referrerpolicy="no-referrer"
     ></script>
 
+    <canvas></canvas>
+
+    <div id="userInterface">
     <!-- Represents health bar of draggle (enemy) -->
     <div 
         style="
@@ -103,7 +107,6 @@
             ></div>
         </div>
     </div>
-    <canvas></canvas>
 
     <div 
         style="
@@ -151,6 +154,7 @@
         "
     >
         <h1 id="attackType" style="font-size: 16px;">Attack Type</h1>
+    </div>
     </div>
     </div>
 </div>

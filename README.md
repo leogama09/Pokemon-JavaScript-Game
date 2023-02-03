@@ -1,6 +1,6 @@
 # How to play
 
-First of all press mouse left-button to play the map theme!
+First of all, press mouse left-button to play the map theme!
  
  1- Press WASD to move.
  

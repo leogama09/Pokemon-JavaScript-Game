@@ -1,6 +1,5 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
-
 canvas.width = 1024
 canvas.height = 576
 
@@ -13,8 +12,6 @@ const battleZonesMap = []
 for (let i = 0; i < battleZonesData.length; i += 70) {
     battleZonesMap.push(battleZonesData.slice(i, 70 + i))
 }
-
-console.log(battleZonesMap)
 
 const boundaries = []
 const offset = {
@@ -47,8 +44,6 @@ battleZonesMap.forEach((row, i) => {
         }}))
     })
 })
-
-console.log(battleZones)
 
 // c.fillStyle = 'white'
 // c.fillRect(0, 0, canvas.width, canvas.height)
@@ -88,7 +83,6 @@ const player = new Sprite({
         down: playerDownImage
     }
 })
-console.log(player)
 
 const background = new Sprite({ 
     position: {
@@ -143,7 +137,6 @@ const battle = {
 
 function animate() {
     const animationId = window.requestAnimationFrame(animate)
-    console.log(animationId)
     background.draw()
     boundaries.forEach(boundary => {
         boundary.draw()
@@ -157,7 +150,6 @@ function animate() {
     let moving = true
     player.animate = false
 
-    console.log(animationId)
     if (battle.initiated) return
 
     // activate a battle
@@ -183,9 +175,12 @@ function animate() {
                 overlappingArea > (player.width * player.height) / 2
                 && Math.random() < 0.03
             ) {
-                console.log('activate battle')
                 // deactivate current animation loop
                 window.cancelAnimationFrame(animationId)
+
+                audio.Map.stop()
+                audio.initBattle.play()
+                audio.battle.play()
 
                 battle.initiated = true
                 gsap.to('#overlappingDiv', {
@@ -231,7 +226,6 @@ function animate() {
                     }}
                 })
             ) {
-                console.log('colliding')
                 moving = false
                 break
             }
@@ -257,7 +251,6 @@ function animate() {
                         }}
                     })
                 ) {
-                    console.log('colliding')
                     moving = false
                     break
                 }
@@ -282,7 +275,6 @@ function animate() {
                         }}
                     })
                 ) {
-                    console.log('colliding')
                     moving = false
                     break
                 }
@@ -307,7 +299,6 @@ function animate() {
                         }}
                     })
                 ) {
-                    console.log('colliding')
                     moving = false
                     break
                 }
@@ -362,5 +353,13 @@ window.addEventListener('keyup', (e) => {
         case 'd':
             keys.d.pressed = false
         break
+    }
+})
+
+let clicked = false
+addEventListener('click', () => {
+    if (!clicked) {
+        audio.Map.play()
+        clicked = true
     }
 })

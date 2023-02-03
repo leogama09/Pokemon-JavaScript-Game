@@ -59,6 +59,8 @@ const battleBackgroundImage = new Image()
                             })
 
                             battle.initiated = false
+                            audio.victory.stop()
+                            audio.Map.play()
                         }
                     })
                 })
@@ -94,6 +96,8 @@ const battleBackgroundImage = new Image()
                                 })
 
                                 battle.initiated = false
+                                audio.victory.stop()
+                                audio.Map.play()
                             }
                         })
                     })
@@ -113,16 +117,14 @@ const battleBackgroundImage = new Image()
         battleAnimationId = window.requestAnimationFrame(animateBattle)
         battleBackground.draw()
 
-        console.log(battleAnimationId)
-
         renderedSprites.forEach(sprite => {
             sprite.draw()
         })
     }
 
-    // animate()
-    initBattle()
-    animateBattle()
+    animate()
+    // initBattle()
+    // animateBattle()
 
     document.querySelector('#dialogueBox').addEventListener('click', (e) => {
         if (queue.length > 0) {

@@ -43,6 +43,13 @@ const battleBackgroundImage = new Image()
                 renderedSprites
             })
 
+            if (draggle.health <= 0) {
+                queue.push(() => {
+                    draggle.faint()
+                })
+            }
+
+            // draggle or enemy attacks right here
             const randomAttack = 
                 draggle.attacks[Math.floor(Math.random() * draggle.attacks.length)]
 
@@ -52,6 +59,12 @@ const battleBackgroundImage = new Image()
                     recipient: emby,
                     renderedSprites
                 })
+
+                if (emby.health <= 0) {
+                    queue.push(() => {
+                        emby.faint()
+                    })
+                }
             })
         })
 
